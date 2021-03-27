@@ -33,4 +33,6 @@ split("  there are some words ")
 
 This project is maintained by Patricio Loncomilla. The code is under BSD license
 
+The codes in this repository requires at least c++11 to compile
+
 Vector comprehensions are also compatible with range( ) from https://github.com/whoshuu/cpp_range
