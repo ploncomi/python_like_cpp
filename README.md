@@ -2,7 +2,8 @@
 
 The objective of this project is to enable C++ to use python-like constructs. Examples:
 
-1) Operator "in":
+1) Operator "in"
+
   if ("h" in "hola")
     cout << "  h is in hola" << endl;
    
