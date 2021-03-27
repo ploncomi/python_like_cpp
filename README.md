@@ -31,7 +31,7 @@ strip("   has spaces  ")
 split("  there are some words ")
 ```
 
-This project is maintained by Patricio Loncomilla. The code is under BSD license
+This project is maintained by Patricio Loncomilla. The code is under MIT license
 
 The codes in this repository requires at least c++11 to compile
 
