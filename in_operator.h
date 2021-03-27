@@ -3,9 +3,9 @@
 #ifndef IN_OPERATOR_H_
 #define IN_OPERATOR_H_
 
-#if __cplusplus <= 199711 || __cplusplus <= 199711L
-#error The file in_operator.h requires at least a c++11 compiler
-#else
+//#if __cplusplus <= 199711 || __cplusplus <= 199711L
+//#error The file in_operator.h requires at least a c++11 compiler
+//#else
 
 
 
@@ -124,7 +124,10 @@ template <class T> inline bool in__(const T& v1, const T& v2) = delete;  // NOTE
 inline bool in__(bool, const std::string&) = delete;  // NOTE: use !(x in y) instead of: ! x in y
 inline bool in__(bool, const std::vector<bool>&) = delete; // NOTE: "in" is not compatible with bool
 
-namespace pylike_named_operator
+template <typename A, typename B> inline bool not_in__(const A &v1, const B &v2) {return !in__(v1,v2);}
+
+
+namespace pylike_named_operator_in
 {
   template<class D>struct make_operator{make_operator(){}};
 
@@ -142,20 +145,48 @@ namespace pylike_named_operator
     return named_invoke( std::forward<Lhs>(lhs.lhs), Op{}, std::forward<Rhs>(rhs) );
   }
 }
-namespace pylike_in_helper {
-  struct in_t : pylike_named_operator::make_operator<in_t> {};
+namespace pylike_in_helper_in {
+  struct in_t : pylike_named_operator_in::make_operator<in_t> {};
   template<class T, class C>
   inline bool named_invoke( T&& t, in_t, C&& c ) {
     return in__(t, c);
   }
 }
 
-pylike_in_helper::in_t IN_OPERATOR;
+namespace pylike_named_operator_not_in
+{
+  template<class D>struct make_operator{make_operator(){}};
+
+  template<class T, char, class O> struct half_apply { T&& lhs; };
+
+  template<class Lhs, class Op>
+  inline half_apply<Lhs, '*', Op> operator+( Lhs&& lhs, make_operator<Op> ) {
+    return {std::forward<Lhs>(lhs)};
+  }
+
+  template<class Lhs, class Op, class Rhs>
+  inline auto operator+( half_apply<Lhs, '*', Op>&& lhs, Rhs&& rhs )
+  -> decltype( named_invoke( std::forward<Lhs>(lhs.lhs), Op{}, std::forward<Rhs>(rhs) ) )
+  {
+    return named_invoke( std::forward<Lhs>(lhs.lhs), Op{}, std::forward<Rhs>(rhs) );
+  }
+}
+namespace pylike_in_helper_not_in {
+  struct not_in_t : pylike_named_operator_not_in::make_operator<not_in_t> {};
+  template<class T, class C>
+  inline bool named_invoke( T&& t, not_in_t, C&& c ) {
+    return not_in__(t, c);
+  }
+}
+
+pylike_in_helper_in::in_t IN_OPERATOR;
+pylike_in_helper_not_in::not_in_t NOT_IN_OPERATOR;
 
 #ifndef USE_CUSTOM_IN_OPERATOR_NAME
 #define in +IN_OPERATOR+
+#define not_in +NOT_IN_OPERATOR+
 #endif
 
-#endif
+//#endif  // __cplusplus
 
 #endif // IN_OPERATOR_H_
