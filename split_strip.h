@@ -10,6 +10,7 @@
 #include <string>
 #include <vector>
 #include <sstream>
+#include <initializer_list>
 
 namespace pl_split_strip
 {
@@ -105,6 +106,12 @@ inline std::vector<std::string> split(const std::string &str, const std::vector<
   }
   return sarr;
 }
+
+inline std::vector<std::string> split(const std::string &str, const std::initializer_list<std::string>& delims)
+{
+  return split(str, std::vector<std::string>(delims));
+}
+
 inline std::vector<std::string> split(const std::string &s, const std::string &delims)
 {
   std::vector<std::string> sarr;

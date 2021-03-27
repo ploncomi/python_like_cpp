@@ -16,7 +16,7 @@ int main(void)
   using namespace pl_split_strip;
   cout << strip("   has spaces  ") << endl;
   print_vector( split("  there are some words ")  );
-  print_vector( split("  there are some words ", vector<string>{"e", "o"})  );
+  print_vector( split("  there are some words ", {"e", "o"})  );
 
   return 0;
 }
