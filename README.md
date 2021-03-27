@@ -6,7 +6,10 @@ The objective of this project is to enable C++ to use python-like constructs. Ex
 ```
   if ("h" in "hola")
     cout << "  h is in hola" << endl;
-   
+
+  if ("q" not_in "hola")
+      cout << "  q is not in hola" << endl;
+  
   if (2 in vector<int>{1,2,3})
     cout << "  2 is in {1,2,3}" << endl;
    
