@@ -3,9 +3,9 @@
 #ifndef SPLIT_STRIP_H_
 #define SPLIT_STRIP_H_
 
-#if __cplusplus <= 199711 || __cplusplus <= 199711L
-#error The file split_strip.h requires at least a c++11 compiler
-#endif
+//#if __cplusplus <= 199711 || __cplusplus <= 199711L
+//#error The file split_strip.h requires at least a c++11 compiler
+//#endif
 
 #include <string>
 #include <vector>

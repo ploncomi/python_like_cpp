@@ -3,9 +3,9 @@
 #ifndef VECTOR_COMPREHENSION_H_
 #define VECTOR_COMPREHENSION_H_
 
-#if __cplusplus <= 199711 || __cplusplus <= 199711L
-#error The file vector_comprehension.h requires at least a c++11 compiler
-#endif
+//#if __cplusplus <= 199711 || __cplusplus <= 199711L
+//#error The file vector_comprehension.h requires at least a c++11 compiler
+//#endif
 
 #include <vector>
 
