@@ -29,3 +29,5 @@ split("  there are some words ")
 ```
 
 This project is maintained by Patricio Loncomilla. The code is under BSD license
+
+Vector comprehensions are also compatible with range( ) from https://github.com/whoshuu/cpp_range
