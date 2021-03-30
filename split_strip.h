@@ -61,13 +61,14 @@ inline std::vector<std::string> split(const std::string &str, const std::vector<
   std::string tostrip;
   std::string s;
 
-  for(const std::string &d : delims)
-  {
-    tostrip += d;
-  }
-  s = strip(str, tostrip); 
-  if (s == "")
-    return sarr;
+  //for(const std::string &d : delims)
+  //{
+  //  tostrip += d;
+  //}
+  //s = strip(str, tostrip); 
+  //if (s == "")
+  //  return sarr;
+  s = str;
 
   int i = 0;
   while (i < s.size())
