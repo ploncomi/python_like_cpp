@@ -41,6 +41,6 @@ Notes: the main actual difficulty with these codes is that reported compilation 
 
 Also, it is recommended to include the files in this repository after all the other #include statements. This could be needed because other headers could use the word "in" for other uses.
 
-split() and strip() equivalent versions do exist in the Boost libraries, but its use require more verbose code.
+split() and strip() equivalent versions do exist in the Boost libraries, but its use require more verbose code. Also, split() in boost can only handle individual characters for splitting strings.
 
-There are possible bugs in split(), which must be revised. A test which compares results between Boost and this code, by using randomly generated strings, could be implemented.
+There are possible bugs in split(), it must be revised more.
