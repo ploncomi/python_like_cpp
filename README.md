@@ -39,8 +39,8 @@ Vector comprehensions are also compatible with range( ) from https://github.com/
 
 Notes: the main actual difficulty with these codes is that reported compilation errors when misusing operators "in" and "not_in" are too verbose. Then, the reported errors don't are useful for locating the source of the error.
 
-Also, it is recommended to include the files in that repository after all the other #include statements.
+Also, it is recommended to include the files in this repository after all the other #include statements. This could be needed because other headers could use the word "in" for other uses.
 
-There are possible bugs in split(), which must be improved.
+There are possible bugs in split(), which must be revised.
 
 split() and strip() equivalent versions do exist in the Boost libraries, but its use require more verbose code.
