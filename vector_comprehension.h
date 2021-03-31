@@ -1,5 +1,8 @@
 // 2021 Patricio Loncomilla
 
+// For using VECTCOMP() with visual studio, the option /Zc:preprocessor must be used (or the option /experimental:preprocessor)
+// However VECTCOMP3() and VECTCOMPIF() works without this flag
+
 #ifndef VECTOR_COMPREHENSION_H_
 #define VECTOR_COMPREHENSION_H_
 
@@ -10,7 +13,7 @@
 #include <vector>
 
 // Normal case: vector or range
-#define VECTCOMP3(expr, var, cont) [=](decltype(cont) w____) {var; std::vector<decltype(expr)> r____; for (var : w____) r____.push_back(expr); return r____;}(cont)
+#define VECTCOMP3(expr, var, cont) [=](decltype(cont) w____) {var;std::vector<decltype(expr)> r____; for (var : w____) r____.push_back(expr);  return r____;}(cont)
 // Case with braces
 #define VECTCOMPN(expr, var, ...) [=](){var; std::vector<decltype(expr)> r____; for (var : __VA_ARGS__) r____.push_back(expr); return r____;}()
 // Case selector
