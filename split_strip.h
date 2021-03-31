@@ -95,6 +95,7 @@ inline std::vector<std::string> split(const std::string &str, const std::vector<
         if (i < s.size() && coincide_internal(d, &s[i]))
         {
           inside_token = false;
+          i += d.size() - 1;
         }
       }
       if (i < s.size() && inside_token == true)
