@@ -17,6 +17,7 @@ int main(void)
   cout << strip("   has spaces  ") << endl;
   print_vector( split("  there are some words ")  );
   print_vector( split("  there are some words ", {"e", "o"})  );
+  print_vector( split("  there are some words ", {"er"})  );
 
   return 0;
 }
