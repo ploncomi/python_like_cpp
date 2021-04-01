@@ -179,8 +179,8 @@ namespace pylike_in_helper_not_in {
   }
 }
 
-pylike_in_helper_in::in_t IN_OPERATOR;
-pylike_in_helper_not_in::not_in_t NOT_IN_OPERATOR;
+static pylike_in_helper_in::in_t IN_OPERATOR;
+static pylike_in_helper_not_in::not_in_t NOT_IN_OPERATOR;
 
 #ifndef USE_CUSTOM_IN_OPERATOR_NAME
 #define in +IN_OPERATOR+
