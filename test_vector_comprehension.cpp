@@ -26,7 +26,7 @@ int main(void)
 
   print_vector( VECTCOMP(2*x, int x, vals) );
   print_vector( VECTCOMP(2*x, int x, {1,2,3,4,5}) );
-  print_vector( VECTCOMP(string("Numero ")+to_string(x), int x, vals) );
+  print_vector( VECTCOMP("Numero "+to_string(x), int x, vals) );
   print_vector( VECTCOMP(x, int x, vals) );
   print_vector( VECTCOMPIF(x, int x, vals, if (x%2 == 0)) );
 
