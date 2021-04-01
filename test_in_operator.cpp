@@ -5,6 +5,7 @@
 int main(void)
 {
   using namespace std;
+  using namespace in_operator_L;
 
   // use of "in" operator
 

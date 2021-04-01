@@ -27,11 +27,11 @@
 //
 // For using a custom name for "in" operator, define USE_CUSTOM_IN_OPERATOR_NAME
 
-#ifndef DONT_USE_LISTS
+namespace in_operator_L
+{
 template <class T>
 const std::initializer_list<T> L(const std::initializer_list<T>& list) {return list;}
-#endif
-
+}
 
 template <class T>
 inline bool in__(const T& elem, const std::vector<T>& vect)
