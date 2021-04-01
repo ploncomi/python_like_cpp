@@ -37,10 +37,18 @@ The codes in this repository requires at least C++11 to compile
 
 Vector comprehensions are also compatible with range( ) from https://github.com/whoshuu/cpp_range
 
-Notes: the main actual difficulty with these codes is that reported compilation errors when misusing operators "in" and "not_in" are too verbose. Then, locating the line which cause the error is not easy. However, source code using "in" and "not_in" is easily readable.
+Notes:
 
-Also, it is recommended to include the files in this repository after all the other #include statements. This could be needed because other headers could use the word "in" for other uses. However, in and not_in can be turned off by using #undef in and #undef not_in
+1) The main actual difficulty with these codes is that reported compilation errors when misusing operators "in" and "not_in" are too verbose. Then, locating the line which cause the error is not easy. However, source code using "in" and "not_in" is easily readable.
 
-split() and strip() equivalent versions do exist in the Boost libraries, but use of Boost requires more verbose code. Also, split() in boost can only handle individual characters for splitting strings.
+2) Use of in and not_in operators require using defines before being used:
 
-There are possible bugs in split(), it must be revised further
+#define in <in_operator::in>
+#define not_in <in_operator::not_in>
+// Code using in and not_in
+#undef in
+#undef not_in
+
+3) split() and strip() equivalent versions do exist in the Boost libraries, but use of Boost requires more verbose code. Also, split() in boost can only handle individual characters for splitting strings.
+
+4) There are possible bugs in split(), it must be revised further
