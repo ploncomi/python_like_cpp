@@ -134,12 +134,12 @@ namespace pylike_named_operator_in
   template<class T, char, class O> struct half_apply { T&& lhs; };
 
   template<class Lhs, class Op>
-  inline half_apply<Lhs, '*', Op> operator+( Lhs&& lhs, make_operator<Op> ) {
+  inline half_apply<Lhs, '*', Op> operator<( Lhs&& lhs, make_operator<Op> ) {
     return {std::forward<Lhs>(lhs)};
   }
 
   template<class Lhs, class Op, class Rhs>
-  inline auto operator+( half_apply<Lhs, '*', Op>&& lhs, Rhs&& rhs )
+  inline auto operator>( half_apply<Lhs, '*', Op>&& lhs, Rhs&& rhs )
   -> decltype( named_invoke( std::forward<Lhs>(lhs.lhs), Op{}, std::forward<Rhs>(rhs) ) )
   {
     return named_invoke( std::forward<Lhs>(lhs.lhs), Op{}, std::forward<Rhs>(rhs) );
@@ -160,12 +160,12 @@ namespace pylike_named_operator_not_in
   template<class T, char, class O> struct half_apply { T&& lhs; };
 
   template<class Lhs, class Op>
-  inline half_apply<Lhs, '*', Op> operator+( Lhs&& lhs, make_operator<Op> ) {
+  inline half_apply<Lhs, '*', Op> operator<( Lhs&& lhs, make_operator<Op> ) {
     return {std::forward<Lhs>(lhs)};
   }
 
   template<class Lhs, class Op, class Rhs>
-  inline auto operator+( half_apply<Lhs, '*', Op>&& lhs, Rhs&& rhs )
+  inline auto operator>( half_apply<Lhs, '*', Op>&& lhs, Rhs&& rhs )
   -> decltype( named_invoke( std::forward<Lhs>(lhs.lhs), Op{}, std::forward<Rhs>(rhs) ) )
   {
     return named_invoke( std::forward<Lhs>(lhs.lhs), Op{}, std::forward<Rhs>(rhs) );
@@ -179,13 +179,11 @@ namespace pylike_in_helper_not_in {
   }
 }
 
-static pylike_in_helper_in::in_t IN_OPERATOR;
-static pylike_in_helper_not_in::not_in_t NOT_IN_OPERATOR;
-
-#ifndef USE_CUSTOM_IN_OPERATOR_NAME
-#define in +IN_OPERATOR+
-#define not_in +NOT_IN_OPERATOR+
-#endif
+namespace in_operator
+{
+static pylike_in_helper_in::in_t in;
+static pylike_in_helper_not_in::not_in_t not_in;
+}
 
 //#endif  // __cplusplus
 
