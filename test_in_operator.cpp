@@ -1,11 +1,11 @@
-#include "in_operator.h"
 #include <iostream>
+#include "in_operator.h"
 
 
 int main(void)
 {
   using namespace std;
-  using namespace in_operator_L;
+  using namespace in_operator_L;  // For enabling function L()
 
   // use of "in" operator
 
