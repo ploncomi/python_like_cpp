@@ -3,21 +3,27 @@
 
 using namespace std;
 
-template<class T>
-void print_vector(const std::vector<T> &arr)
+template <typename T>
+std::ostream& operator<<(std::ostream& os, const std::vector<T>& v)
 {
-  for (const T& x : arr)
-    std::cout << x << ", ";
-  std::cout << std::endl;
+    os << "[";
+    for (int i = 0; i < v.size(); ++i) {
+        os << v[i];
+        if (i != v.size() - 1)
+            os << ", ";
+    }
+    os << "]";
+    return os;
 }
 
 int main(void)
 {
   using namespace pl_split_strip;
   cout << strip("   has spaces  ") << endl;
-  print_vector( split("  there are some words ")  );
-  print_vector( split("  there are some words ", {"e", "o"})  );
-  print_vector( split("  there are some words ", "er")  );
+  cout << split("  there are some words ") << endl;
+  cout << split("  there are some words ", {"e", "o"}) << endl;
+  cout << split("  there are some words ", "er") << endl;
+  cout << split("Hello all", "l") << endl;
 
   return 0;
 }

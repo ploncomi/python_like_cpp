@@ -73,7 +73,7 @@ inline std::vector<std::string> split(const std::string &str, const std::vector<
   int i = 0;
   while (i < s.size())
   {
-    bool inside_token = false;
+    bool inside_token = false;  // This variable indicates if inside a separator or inside a token
 
     while (inside_token == false && i < s.size())
     {
@@ -104,7 +104,8 @@ inline std::vector<std::string> split(const std::string &str, const std::vector<
       }
       i++;
     }
-    sarr.push_back(ss.str().c_str());
+    if (ss.str().size() > 0)
+      sarr.push_back(ss.str().c_str());
   }
   return sarr;
 }
