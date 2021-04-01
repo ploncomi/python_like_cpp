@@ -2,7 +2,6 @@
 #include <string>
 #include "vector_comprehension.h"
 
-#define nada(X) X;
 
 template<class T>
 void print_vector(const std::vector<T> &arr)
@@ -16,13 +15,6 @@ int main(void)
 {
   using namespace std;
   std::vector<int> vals = {6,7,8,9,10};
-  double m = 1.5;
-
-  nada(int x);
-
-  auto f = []() {int x;};
-
-  []() {int x;};
 
   print_vector( VECTCOMP(2*x, int x, vals) );
   print_vector( VECTCOMP(2*x, int x, {1,2,3,4,5}) );
