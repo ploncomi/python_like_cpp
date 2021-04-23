@@ -121,8 +121,8 @@ inline bool in__(const char *s, const std::initializer_list<const char *>& list)
 }
 
 template <class T> inline bool in__(const T& v1, const T& v2) = delete;  // NOTE: "x in y" has not sense when both have the same type
-inline bool in__(bool, const std::string&) = delete;  // NOTE: use !(x in y) instead of: ! x in y
-inline bool in__(bool, const std::vector<bool>&) = delete; // NOTE: "in" is not compatible with bool
+inline bool in__(bool, const std::string&) = delete;  // NOTE: use "x not_in y" instead of: "! x in y"
+inline bool in__(bool, const std::vector<bool>&) = delete; // NOTE: "in" is not compatible with bool (for eviting accidental use of "! x in y"
 
 template <typename A, typename B> inline bool not_in__(const A &v1, const B &v2) {return !in__(v1,v2);}
 
