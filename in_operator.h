@@ -3,12 +3,6 @@
 #ifndef IN_OPERATOR_H_
 #define IN_OPERATOR_H_
 
-//#if __cplusplus <= 199711 || __cplusplus <= 199711L
-//#error The file in_operator.h requires at least a c++11 compiler
-//#else
-
-
-
 #include <string>
 #include <vector>
 #include <set>
@@ -24,9 +18,12 @@
 // 3) "a" is an element and "b" is a vector
 // 4) "a" is an element and "b" is a set
 // 5) "a" is an element and "b" is a map
-//
-// For using a custom name for "in" operator, define USE_CUSTOM_IN_OPERATOR_NAME
 
+// For using the in operator, add these lines:
+// #define in <in_operator::in>
+// #define not_in <in_operator::not_in>
+
+//
 namespace in_operator_L
 {
 template <class T>
@@ -121,8 +118,8 @@ inline bool in__(const char *s, const std::initializer_list<const char *>& list)
 }
 
 template <class T> inline bool in__(const T& v1, const T& v2) = delete;  // NOTE: "x in y" has not sense when both have the same type
-inline bool in__(bool, const std::string&) = delete;  // NOTE: use "x not_in y" instead of: "! x in y"
-inline bool in__(bool, const std::vector<bool>&) = delete; // NOTE: "in" is not compatible with bool (for eviting accidental use of "! x in y"
+inline bool in__(bool, const std::string&) = delete;  // NOTE: use !(x in y) instead of: ! x in y
+inline bool in__(bool, const std::vector<bool>&) = delete; // NOTE: "in" is not compatible with bool
 
 template <typename A, typename B> inline bool not_in__(const A &v1, const B &v2) {return !in__(v1,v2);}
 
@@ -184,7 +181,5 @@ namespace in_operator
 static pylike_in_helper_in::in_t in;
 static pylike_in_helper_not_in::not_in_t not_in;
 }
-
-//#endif  // __cplusplus
 
 #endif // IN_OPERATOR_H_
