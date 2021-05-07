@@ -3,14 +3,16 @@
 #ifndef SPLIT_STRIP_H_
 #define SPLIT_STRIP_H_
 
-//#if __cplusplus <= 199711 || __cplusplus <= 199711L
-//#error The file split_strip.h requires at least a c++11 compiler
-//#endif
-
 #include <string>
 #include <vector>
 #include <sstream>
 #include <initializer_list>
+
+
+// Functions provided:
+// strip()
+// split()
+// replace()
 
 namespace pl_split_strip
 {
@@ -122,6 +124,18 @@ inline std::vector<std::string> split(const std::string &s, const std::string &d
   return split(s, sarr);
 }
 
-}
+std::string replace(std::string subject, const std::string& search, const std::string& replace)
+{
+  size_t pos = 0;
+  while ((pos = subject.find(search, pos)) != std::string::npos)
+  {
+    subject.replace(pos, search.length(), replace);
+    pos += replace.length();
+  }
+    return subject;
+}  
+
+
+} // namespace pl_split_strip
 
 #endif // SPLIT_STRIP_H_
