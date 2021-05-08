@@ -19,16 +19,10 @@ int main(void)
   using namespace py_list;
   using namespace std;
   vector<int> a = {2,4,8,10,12,14};
-  cout << V(a)[-1] << endl;
-  cout << V(a)[{1,-1}] << endl;
-  cout << V(a)[{2,end()}] << endl;
+  cout << V(a)[-1] << endl;         // like: a[-1]
+  cout << V(a)[{1,-1}] << endl;     // like: a[1:-1]
+  cout << V(a)[{2,end()}] << endl;  // like: a[2,:]
 
   return 0;
 }
-
-
-
-
-
-
 
