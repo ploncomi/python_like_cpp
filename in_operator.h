@@ -95,6 +95,23 @@ inline bool in__(const char *s, const std::vector<std::string>& svec)
   return false;
 }
 
+inline bool in__(const char *s, const std::set<std::string>& svec)
+{
+  std::string str(s);
+  for (const std::string& it : svec)
+  {
+    if (it == s)
+      return true;
+  }
+  return false;
+}
+
+template <class T>
+inline bool in__(const char *s, const std::map<std::string, T>& mymap)
+{
+  return mymap.find(std::string(s)) != mymap.end();
+}
+
 inline bool in__(const char *s, const std::initializer_list<std::string>& list)
 {
   std::string str(s);
