@@ -13,8 +13,8 @@ The objective of this project is to enable C++ to use python-like constructs. Ex
   if (2 in vector<int>{1,2,3})
     cout << "  2 is in {1,2,3}" << endl;
    
-  if (3 in L({1,2,3}))
-    cout << "  3 is in {1,2,3}" << endl;
+  if (5 not_in L({1,2,3}))
+    cout << "  5 is not in {1,2,3}" << endl;
 ```
 
 2) Vector comprehension (like list comprehensions)
