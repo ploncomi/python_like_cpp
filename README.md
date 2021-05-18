@@ -41,7 +41,7 @@ Notes:
 
 1) This is a toy code...
 
-2) The main actual difficulty with these codes is that reported compilation errors when misusing operators "in" and "not_in" are too verbose. Then, locating the line which cause the error is not easy. However, source code using "in" and "not_in" is easily readable.
+2) The main actual difficulty with these codes is that reported compilation errors when misusing operators "in" and "not_in" are not informative enough. However, source code using "in" and "not_in" is easily readable.
 
 3) Use of in and not_in operators require using defines before being used:
 ```
