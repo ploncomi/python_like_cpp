@@ -40,6 +40,12 @@ int main(void)
   if ("token5" not_in std::vector<string>{"token1", "token2", "token3", "token4"})
     cout << "  \"token5\" is not in {\"token1\", \"token2\", \"token3\", \"token4\"}" << endl;
 
+  if ("token5" not_in std::set<string>{"token1", "token2", "token3", "token4"})
+    cout << "  \"token5\" is not in {\"token1\", \"token2\", \"token3\", \"token4\"}" << endl;
+
+  if ("token5" not_in std::map<string, int>{{"token1",1}, {"token2",2}, {"token3",3}, {"token4",4}})
+    cout << "  \"token5\" is not in {\"token1\", \"token2\", \"token3\", \"token4\"}" << endl;
+
   if ("token1" in L({"token1", "token2", "token3", "token4"}))
     cout << "  \"token1\" is in {\"token1\", \"token2\", \"token3\", \"token4\"}" << endl;
 

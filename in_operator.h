@@ -10,7 +10,7 @@
 #include <iterator>
 #include <initializer_list>
 
-#include <type_traits>
+//#include <type_traits>
 
 // "a in b" can be used when:
 // 1) "a" is a character and "b" is a string
@@ -28,6 +28,14 @@ namespace in_operator_L
 {
 template <class T>
 const std::initializer_list<T> L(const std::initializer_list<T>& list) {return list;}
+}
+
+
+template <class T, class E>
+inline bool in__(const T& elem, const E& other)
+{
+  static_assert(false, "\"in\" operator used on invalid types (see file: in_operator.h)");
+  return false;
 }
 
 template <class T>
@@ -83,6 +91,12 @@ inline bool in__(const char *substring, const std::string& mystring)
 {
   return mystring.find(std::string(substring)) != std::string::npos;
 }
+
+inline bool in__(const char *substring, const char *mystring)
+{
+  return std::string(mystring).find(std::string(substring)) != std::string::npos;
+}
+
 
 inline bool in__(const char *s, const std::vector<std::string>& svec)
 {
