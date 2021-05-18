@@ -14,13 +14,13 @@ int main(void)
   #define not_in <in_operator::not_in>  // Optional macro per function. Scope in_operator:: is used for disambiguating respect to "char *not_in" defined above
 
   cout << "Substring search:" << endl;
-  if ("h" in "hola")
-    cout << "  \"h\" is in \"hola\"" << endl;
+  if ('h' in "hola")
+    cout << "  \'h\'' is in \"hola\"" << endl;
 
   if ("ol" in "hola")
     cout << "  \"ol\" is in \"hola\"" << endl;
 
-  if ("q" not_in "hola")
+  if (std::string("q") not_in "hola")
     cout << "  \"q\" is not in \"hola\"" << endl;
 
   cout << "Element search:" << endl;

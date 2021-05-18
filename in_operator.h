@@ -82,9 +82,26 @@ inline bool in__(char c, const std::string& mystring)
   return false;
 }
 
+inline bool in__(char c, const char *mystring)
+{
+  std::string str = mystring;
+  for (const char it : str)
+  {
+    if (it == c)
+      return true;
+  }
+  return false;
+}
+
+
 inline bool in__(const std::string &substring, const std::string& mystring)
 {
   return mystring.find(substring) != std::string::npos;
+}
+
+inline bool in__(const std::string &substring, const char *mystring)
+{
+  return std::string(mystring).find(substring) != std::string::npos;
 }
 
 inline bool in__(const char *substring, const std::string& mystring)
