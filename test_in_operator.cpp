@@ -1,14 +1,13 @@
 #include <iostream>
 #include "in_operator.h"
 
-// This variables are used for testing robustness of the code against external variables named "in" or "not_in"
-int in = 5;
-const char not_in[] = "asd";
-
 int main(void)
 {
   using namespace std;
   using namespace in_operator_L;  // For enabling function L()
+
+  // Option 1: using defines
+  // This option will not localize the line generating an error when using g++
 
   #define in <in_operator::in>  // Optional macro per function. Scope is used for disambiguating respect to "int in" defined above
   #define not_in <in_operator::not_in>  // Optional macro per function. Scope in_operator:: is used for disambiguating respect to "char *not_in" defined above
@@ -51,6 +50,19 @@ int main(void)
 
   #undef in
   #undef not_in
+
+  // Option 2: using namespaces and < > brackets
+  // This option generates better localized error messages in g++
+  // However, this option will fail if there are other variables named "in" or "not_in"
+
+  using namespace in_operator;
+
+  if ('h' <in> "hola")
+    cout << "  \'h\'' is in \"hola\"" << endl;
+
+  if ("qwe" <not_in> "hola")
+    cout << "  \"qwe\" is not in \"hola\"" << endl;
+
 
   return 0;
 }
