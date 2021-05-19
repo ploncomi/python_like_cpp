@@ -33,7 +33,7 @@ split("  there are some words ")
 
 This project is maintained by Patricio Loncomilla. The code is under MIT license
 
-The codes in this repository requires at least C++11 to compile
+The codes in this repository require at least C++11 to compile
 
 Vector comprehensions are also compatible with range( ) from https://github.com/whoshuu/cpp_range
 
@@ -44,6 +44,7 @@ Notes:
 2) The main actual difficulty with these codes is that reported compilation errors when misusing operators "in" and "not_in" are not informative enough (specially when using g++). If more informative errors are required, <in> and <not_in> can be used instead (this approach is shown in test_in_operator.cpp)
 
 3) Use of in and not_in operators require using defines (option 1) or namespaces (option 2) for being used:
+
 Option 1
 ```
 #define in <in_operator::in>
