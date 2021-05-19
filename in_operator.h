@@ -290,7 +290,7 @@ inline bool in__(char *substring, std::string& mystring)
 
 
 /********************************
- Overloads for char * (vector)
+ Overloads for char * (char *)
 *********************************/
 
 inline bool in__(const char *substring, const char *mystring)
