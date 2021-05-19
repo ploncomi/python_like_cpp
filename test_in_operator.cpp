@@ -7,7 +7,7 @@ int main(void)
   using namespace in_operator_L;  // For enabling function L()
 
   // Option 1: using defines
-  // This option will not localize the line generating an error when using g++
+  // This option will shadow preexistent variables named in and not_in
 
   #define in <in_operator::in> 
   #define not_in <in_operator::not_in>
@@ -52,8 +52,7 @@ int main(void)
   #undef not_in
 
   // Option 2: using namespaces and < > brackets
-  // This option generates better localized error messages in g++
-  // However, this option will fail if there are other variables named "in" or "not_in"
+  // This option will fail to compile if there are other variables named "in" or "not_in"
 
   using namespace in_operator;
 
