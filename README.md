@@ -2,7 +2,7 @@
 
 The objective of this project is to enable C++ to use python-like constructs. Examples:
 
-1) Operator "in"
+1) Operator ```in```
 ```
   if ("h" in "hola")
     cout << "  h is in hola" << endl;
@@ -41,9 +41,9 @@ Notes:
 
 1) This is a toy code...
 
-2) The main actual difficulty with these codes is that reported compilation errors when misusing operators "in" and "not_in" are not informative enough (specially when using g++). If more informative errors are required, <in> and <not_in> can be used instead (this approach is shown in test_in_operator.cpp)
+2) The main actual difficulty with these codes is that reported compilation errors when misusing operators ```in``` and ```not_in``` are not informative enough (specially when using g++). If more informative errors are required, ```<in>``` and ```<not_in>``` can be used instead (this approach is shown in test_in_operator.cpp)
 
-3) Use of in and not_in operators require using defines (option 1) or namespaces (option 2) for being used:
+3) Use of ```in``` and ```not_in``` operators require using defines (option 1) or namespaces (option 2) for being used:
 
 Option 1
 ```
@@ -61,6 +61,6 @@ using namespace in_operator;
 // Note that preexstent variables named "in" and "not_in" will cause the code to not compile
 ```
 
-4) split() and strip() equivalent versions do exist in the Boost libraries, but use of Boost requires more verbose code. Also, split() in boost can only handle individual characters for splitting strings.
+4) ```split()``` and ```strip()``` equivalent versions do exist in the Boost libraries, but use of Boost requires more verbose code. Also, ```split()``` in boost can only handle individual characters for splitting strings.
 
-5) There are possible bugs in split(), it must be revised further
+5) There are possible bugs in ```split()```, it must be revised further
