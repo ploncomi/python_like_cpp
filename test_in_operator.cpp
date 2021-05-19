@@ -3,7 +3,7 @@
 
 // This variables are used for testing robustness of the code against external variables named "in" or "not_in"
 int in = 5;
-char *not_in = "asd";
+const char not_in[] = "asd";
 
 int main(void)
 {
