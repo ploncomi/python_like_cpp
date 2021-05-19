@@ -9,8 +9,8 @@ int main(void)
   // Option 1: using defines
   // This option will not localize the line generating an error when using g++
 
-  #define in <in_operator::in>  // Optional macro per function. Scope is used for disambiguating respect to "int in" defined above
-  #define not_in <in_operator::not_in>  // Optional macro per function. Scope in_operator:: is used for disambiguating respect to "char *not_in" defined above
+  #define in <in_operator::in> 
+  #define not_in <in_operator::not_in>
 
   cout << "Substring search:" << endl;
   if ('h' in "hola")
