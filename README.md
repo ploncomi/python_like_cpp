@@ -41,9 +41,10 @@ Notes:
 
 1) This is a toy code...
 
-2) The main actual difficulty with these codes is that reported compilation errors when misusing operators "in" and "not_in" are not informative enough (specially when using g++). However, source code using "in" and "not_in" is easily readable.
+2) The main actual difficulty with these codes is that reported compilation errors when misusing operators "in" and "not_in" are not informative enough (specially when using g++). If more informative errors are required, <in> and <not_in> can be used instead (this approach is shown in test_in_operator.cpp)
 
-3) Use of in and not_in operators require using defines before being used:
+3) Use of in and not_in operators require using defines (option 1) or namespaces (option 2) for being used:
+Option 1
 ```
 #define in <in_operator::in>
 #define not_in <in_operator::not_in>
@@ -51,6 +52,12 @@ Notes:
 // Note that preexstent variables named "in" and "not_in" will be shadowed by the defines
 #undef in
 #undef not_in
+```
+Option 2
+```
+using namespace in_operator;
+// Code using <in> and <not_in>
+// Note that preexstent variables named "in" and "not_in" will cause the code to not compile
 ```
 
 4) split() and strip() equivalent versions do exist in the Boost libraries, but use of Boost requires more verbose code. Also, split() in boost can only handle individual characters for splitting strings.
