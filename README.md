@@ -48,6 +48,7 @@ Notes:
 #define in <in_operator::in>
 #define not_in <in_operator::not_in>
 // Code using in and not_in
+// Note that preexstent variables named "in" and "not_in" will be shadowed by the defines
 #undef in
 #undef not_in
 ```
