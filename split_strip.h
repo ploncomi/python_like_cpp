@@ -117,12 +117,36 @@ inline std::vector<std::string> split(const std::string &str, const std::initial
   return split(str, std::vector<std::string>(delims));
 }
 
-inline std::vector<std::string> split(const std::string &s, const std::string &delims)
+std::vector<std::string> split (std::string s, std::string delimiter)
 {
-  std::vector<std::string> sarr;
-  sarr.push_back(delims);
-  return split(s, sarr);
+  size_t pos_start = 0, pos_end, delim_len = delimiter.length();
+  std::string token;
+  std::vector<std::string> res;
+
+  while ((pos_end = s.find (delimiter, pos_start)) != std::string::npos)
+  {
+    token = s.substr (pos_start, pos_end - pos_start);
+    pos_start = pos_end + delim_len;
+    res.push_back (token);
+  }
+
+  res.push_back (s.substr (pos_start));
+  return res;
 }
+
+std::string join(std::string delimiter, std::vector<std::string> tokens)
+{
+  if (tokens.size() == 0)
+    return "";
+  std::stringstream str;
+
+  for (size_t i=0; i<tokens.size()-1; i++)
+    str << tokens[i] << delimiter;
+  str << tokens[tokens.size()-1];
+  return str.str();
+}
+
+
 
 std::string replace(std::string subject, const std::string& search, const std::string& replace)
 {

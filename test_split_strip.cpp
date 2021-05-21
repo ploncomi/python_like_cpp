@@ -21,9 +21,10 @@ int main(void)
   using namespace pl_split_strip;
   cout << strip("   has spaces  ") << endl;
   cout << split("  there are some words ") << endl;
-  cout << split("  there are some words ", {"e", "o"}) << endl;
-  cout << split("  there are some words ", "er") << endl;
-  cout << split("Hello all", "l") << endl;
+  cout << split("  there are some words ", {"e", "o"}) << endl;  // Multiple delimiters
+  cout << split("Hello all", "l") << endl;    // Dont compress tokens
+  cout << split("Hello all", {"l"}) << endl;  // Compress tokens
+  cout << join("l", split("Hello all", "l")) << endl;
 
   return 0;
 }
