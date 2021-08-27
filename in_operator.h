@@ -35,21 +35,21 @@ const std::initializer_list<T> L(const std::initializer_list<T>& list) {return l
 
 #if !defined(__GNUC__)
 template <class T, class E>
-inline bool in__(const T& elem, const E& other)
+inline bool contains__(const T& elem, const E& other)
 {
   static_assert(false, "\"in\" operator used on invalid types (see file: in_operator.h)");
   return false;
 }
 #else
 template <class T, class E>
-inline bool in__(const T& elem, const E& other) = delete;  // "in" operator used on invalid types (see file: in_operator.h)
+inline bool contains__(const T& elem, const E& other) = delete;  // "in" operator used on invalid types (see file: in_operator.h)
 #endif
 
 /***************
  Overloads for vector
 ****************/
 template <class T>
-inline bool in__(const T& elem, const std::vector<T>& vect)
+inline bool contains__(const std::vector<T>& vect, const T& elem)
 {
   for (const T& it : vect)
   {
@@ -63,7 +63,7 @@ inline bool in__(const T& elem, const std::vector<T>& vect)
  Overloads for initializer list
 *********************************/
 template <class T>
-inline bool in__(const T& elem, const std::initializer_list<T>& list)
+inline bool contains__(const std::initializer_list<T>& list, const T& elem)
 {
   for (const T& it : list)
   {
@@ -78,7 +78,7 @@ inline bool in__(const T& elem, const std::initializer_list<T>& list)
 *********************************/
 
 template <class T>
-inline bool in__(const T& elem, const std::set<T>& myset)
+inline bool contains__(const std::set<T>& myset, const T& elem)
 {
   return myset.find(elem) != myset.end();
 }
@@ -88,7 +88,7 @@ inline bool in__(const T& elem, const std::set<T>& myset)
 *********************************/
 
 template <class T, class E>
-inline bool in__(const T& elem, const std::map<T,E>& mymap)
+inline bool contains__(const std::map<T,E>& mymap, const T& elem)
 {
   return mymap.find(elem) != mymap.end();
 }
@@ -97,7 +97,7 @@ inline bool in__(const T& elem, const std::map<T,E>& mymap)
  Overloads for string (char)
 *********************************/
 
-inline bool in__(char c, const std::string& mystring)
+inline bool contains__(const std::string& mystring, char c)
 {
   for (const char it : mystring)
   {
@@ -107,7 +107,7 @@ inline bool in__(char c, const std::string& mystring)
   return false;
 }
 
-inline bool in__(char c, const char* mystring)
+inline bool contains__(const char* mystring, char c)
 {
   std::string str = mystring;
   for (const char it : str)
@@ -122,7 +122,7 @@ inline bool in__(char c, const char* mystring)
  Overloads for string (string)
 *********************************/
 
-inline bool in__(const std::string &substring, const std::string& mystring)
+inline bool contains__(const std::string& mystring, const std::string &substring)
 {
   return mystring.find(substring) != std::string::npos;
 }
@@ -131,12 +131,12 @@ inline bool in__(const std::string &substring, const std::string& mystring)
  Overloads for string (char *)
 *********************************/
 
-inline bool in__(const std::string &substring, const char *mystring)
+inline bool contains__(const char *mystring, const std::string& substring)
 {
   return std::string(mystring).find(substring) != std::string::npos;
 }
 
-inline bool in__(const char *substring, const std::string& mystring)
+inline bool contains__(const std::string& mystring, const char* substring)
 {
   return mystring.find(std::string(substring)) != std::string::npos;
 }
@@ -145,7 +145,7 @@ inline bool in__(const char *substring, const std::string& mystring)
  Overloads for char * (char *)
 *********************************/
 
-inline bool in__(const char *substring, const char *mystring)
+inline bool contains__(const char *mystring, const char* substring)
 {
   return std::string(mystring).find(std::string(substring)) != std::string::npos;
 }
@@ -154,7 +154,7 @@ inline bool in__(const char *substring, const char *mystring)
  Overloads for char * (vector)
 *********************************/
 
-inline bool in__(const char *s, const std::vector<std::string>& svec)
+inline bool contains__(const std::vector<std::string>& svec, const char* s)
 {
   std::string str(s);
   for (const std::string& it : svec)
@@ -169,7 +169,7 @@ inline bool in__(const char *s, const std::vector<std::string>& svec)
  Overloads for char * (set)
 *********************************/
 
-inline bool in__(const char *s, const std::set<std::string>& svec)
+inline bool contains__(const std::set<std::string>& svec, const char *s)
 {
   std::string str(s);
   for (const std::string& it : svec)
@@ -185,7 +185,7 @@ inline bool in__(const char *s, const std::set<std::string>& svec)
 *********************************/
 
 template <class T>
-inline bool in__(const char *s, const std::map<std::string, T>& mymap)
+inline bool contains__(const std::map<std::string, T>& mymap, const char* s)
 {
   return mymap.find(std::string(s)) != mymap.end();
 }
@@ -194,7 +194,7 @@ inline bool in__(const char *s, const std::map<std::string, T>& mymap)
  Overloads for char * (initializer_list)
 ******************************************/
 
-inline bool in__(const char *s, const std::initializer_list<std::string>& list)
+inline bool contains__(const std::initializer_list<std::string>& list, const char* s)
 {
   std::string str(s);
   for (const std::string& it : list)
@@ -208,11 +208,11 @@ inline bool in__(const char *s, const std::initializer_list<std::string>& list)
 /***********************************************************
  Deleted functions (first argument bool could be an error)
 ************************************************************/
-template <class T> inline bool in__(const T& v1, const T& v2) = delete;  // NOTE: "x in y" has not sense when both have the same type
-inline bool in__(bool, const std::string&) = delete;  // NOTE: use "x not_in y" instead of: "! x in y"
-inline bool in__(bool, const std::vector<bool>&) = delete; // NOTE: "in" operator is not compatible with bool
+template <class T> inline bool contains__(const T& v1, const T& v2) = delete;  // NOTE: "x in y" has not sense when both have the same type
+inline bool contains__(const std::string&, bool) = delete;  // NOTE: use "x not_in y" instead of: "! x in y"
+inline bool contains__(const std::vector<bool>&, bool) = delete; // NOTE: "in" operator is not compatible with bool
 
-template <typename A, typename B> inline bool not_in__(const A &v1, const B &v2) {return !in__(v1,v2);}
+template <typename A, typename B> inline bool not_contains__(const A &v1, const B &v2) {return !contains__(v1,v2);}
 
 /************************************
  Definition of the operators
@@ -239,39 +239,39 @@ namespace pylike_in_helper_in {
   struct in_t : pylike_named_operator_in::make_operator<in_t> {};
   template<class T, class C>
   inline bool named_invoke( T&& t, in_t, C&& c ) {
-    return in__(const_cast<const T&&>(t), const_cast<const C&&>(c));
+    return contains__(const_cast<const C&&>(c), const_cast<const T&&>(t));
   }
 
   // Cases involving char* must be treated specifically
   template<class C>
   inline bool named_invoke(char *t, in_t, C&& c) {
-    return in__(const_cast<const char*>(t), const_cast<const C&&>(c));
+    return contains__(const_cast<const C&&>(c), const_cast<const char*>(t));
   }
   template<class T>
   inline bool named_invoke(T&& t, in_t, char *c) {
-    return in__(const_cast<const T&&>(t), const_cast<const char*>(c));
+    return contains__(const_cast<const char*>(c), const_cast<const T&&>(t));
   }
   inline bool named_invoke(char *t, in_t, char *c) {
-    return in__(const_cast<const char*>(t), const_cast<const char*>(c));
+    return contains__(const_cast<const char*>(c), const_cast<const char*>(t));
   }
   template<class C>
   inline bool named_invoke(const char *t, in_t, C&& c) {
-    return in__(const_cast<const char*>(t), const_cast<const C&&>(c));
+    return contains__(const_cast<const C&&>(c), const_cast<const char*>(t));
   }
   template<class T>
   inline bool named_invoke(T&& t, in_t, const char *c) {
-    return in__(const_cast<const T&&>(t), const_cast<const char*>(c));
+    return contains__(const_cast<const char*>(c), const_cast<const T&&>(t));
   }
   inline bool named_invoke(const char *t, in_t, const char *c) {
-    return in__(const_cast<const char*>(t), const_cast<const char*>(c));
+    return contains__(const_cast<const char*>(c), const_cast<const char*>(t));
   }
 
   inline bool named_invoke(char t, in_t, char* c) {
-    return in__(t, const_cast<const char*>(c));
+    return contains__(const_cast<const char*>(c), t);
   }
 
   inline bool named_invoke(char t, in_t, const char* c) {
-    return in__(t, const_cast<const char*>(c));
+    return contains__(const_cast<const char*>(c), t);
   }
 }
 
@@ -297,7 +297,7 @@ namespace pylike_in_helper_not_in {
   struct not_in_t : pylike_named_operator_not_in::make_operator<not_in_t> {};
   template<class T, class C>
   inline bool named_invoke( T&& t, not_in_t, C&& c ) {
-    return not_in__(t, c);
+    return not_contains__(c, t);
   }
 }
 

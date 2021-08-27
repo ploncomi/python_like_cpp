@@ -14,7 +14,7 @@ int main(void)
 
   cout << "Substring search:" << endl;
   if ('h' in "hola")
-    cout << "  \'h\'' is in \"hola\"" << endl;
+    cout << "  \'h\' is in \"hola\"" << endl;
 
   if ("ol" in "hola")
     cout << "  \"ol\" is in \"hola\"" << endl;
@@ -25,28 +25,28 @@ int main(void)
   cout << "Element search:" << endl;
 
   if (2 in vector<int>{1,2,3})
-    cout << "  2 is in {1,2,3}" << endl;
+    cout << "  2 is in vector {1,2,3}" << endl;
 
   if (5 not_in vector<int>{1,2,3})
-    cout << "  5 is not in {1,2,3}" << endl;
+    cout << "  5 is not in vector {1,2,3}" << endl;
 
   if (3 in L({1,2,3}))
-    cout << "  3 is in {1,2,3}" << endl;
+    cout << "  3 is in initializer list {1,2,3}" << endl;
 
   if ("token3" in std::vector<string>{"token1", "token2", "token3", "token4"})
-    cout << "  \"token3\" is in {\"token1\", \"token2\", \"token3\", \"token4\"}" << endl;
+    cout << "  \"token3\" is in vector {\"token1\", \"token2\", \"token3\", \"token4\"}" << endl;
 
   if ("token5" not_in std::vector<string>{"token1", "token2", "token3", "token4"})
-    cout << "  \"token5\" is not in {\"token1\", \"token2\", \"token3\", \"token4\"}" << endl;
+    cout << "  \"token5\" is not in vector {\"token1\", \"token2\", \"token3\", \"token4\"}" << endl;
 
   if ("token5" not_in std::set<string>{"token1", "token2", "token3", "token4"})
-    cout << "  \"token5\" is not in {\"token1\", \"token2\", \"token3\", \"token4\"}" << endl;
+    cout << "  \"token5\" is not in set {\"token1\", \"token2\", \"token3\", \"token4\"}" << endl;
 
   if ("token5" not_in std::map<string, int>{{"token1",1}, {"token2",2}, {"token3",3}, {"token4",4}})
-    cout << "  \"token5\" is not in {\"token1\", \"token2\", \"token3\", \"token4\"}" << endl;
+    cout << "  \"token5\" is not in map {\"token1\", \"token2\", \"token3\", \"token4\"}" << endl;
 
   if ("token1" in L({"token1", "token2", "token3", "token4"}))
-    cout << "  \"token1\" is in {\"token1\", \"token2\", \"token3\", \"token4\"}" << endl;
+    cout << "  \"token1\" is in initializer list {\"token1\", \"token2\", \"token3\", \"token4\"}" << endl;
 
   #undef in
   #undef not_in
@@ -57,7 +57,7 @@ int main(void)
   using namespace in_operator;
 
   if ('h' <in> "hola")
-    cout << "  \'h\'' is in \"hola\"" << endl;
+    cout << "  \'h\' is in \"hola\"" << endl;
 
   if ("qwe" <not_in> "hola")
     cout << "  \"qwe\" is not in \"hola\"" << endl;
