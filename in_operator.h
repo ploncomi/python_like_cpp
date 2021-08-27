@@ -59,55 +59,11 @@ inline bool in__(const T& elem, const std::vector<T>& vect)
   return false;
 }
 
-template <class T>
-inline bool in__(T& elem, const std::vector<T>& vect)
-{
-  for (const T& it : vect)
-  {
-    if (it == elem)
-      return true;
-  }
-  return false;
-}
-
-template <class T>
-inline bool in__(const T& elem, std::vector<T>& vect)
-{
-  for (const T& it : vect)
-  {
-    if (it == elem)
-      return true;
-  }
-  return false;
-}
-
-template <class T>
-inline bool in__(T& elem, std::vector<T>& vect)
-{
-  for (const T& it : vect)
-  {
-    if (it == elem)
-      return true;
-  }
-  return false;
-}
-
 /********************************
  Overloads for initializer list
 *********************************/
 template <class T>
 inline bool in__(const T& elem, const std::initializer_list<T>& list)
-{
-  for (const T& it : list)
-  {
-    if (it == elem)
-      return true;
-  }
-  return false;
-}
-
-template <class T>
-inline bool in__(T& elem, const std::initializer_list<T>& list)
 {
   for (const T& it : list)
   {
@@ -127,48 +83,12 @@ inline bool in__(const T& elem, const std::set<T>& myset)
   return myset.find(elem) != myset.end();
 }
 
-template <class T>
-inline bool in__(T& elem, const std::set<T>& myset)
-{
-  return myset.find(elem) != myset.end();
-}
-
-template <class T>
-inline bool in__(const T& elem, std::set<T>& myset)
-{
-  return myset.find(elem) != myset.end();
-}
-
-template <class T>
-inline bool in__(T& elem, std::set<T>& myset)
-{
-  return myset.find(elem) != myset.end();
-}
-
 /********************************
  Overloads for map
 *********************************/
 
 template <class T, class E>
 inline bool in__(const T& elem, const std::map<T,E>& mymap)
-{
-  return mymap.find(elem) != mymap.end();
-}
-
-template <class T, class E>
-inline bool in__(const T& elem, std::map<T,E>& mymap)
-{
-  return mymap.find(elem) != mymap.end();
-}
-
-template <class T, class E>
-inline bool in__(T& elem, const std::map<T,E>& mymap)
-{
-  return mymap.find(elem) != mymap.end();
-}
-
-template <class T, class E>
-inline bool in__(T& elem, std::map<T,E>& mymap)
 {
   return mymap.find(elem) != mymap.end();
 }
@@ -187,17 +107,7 @@ inline bool in__(char c, const std::string& mystring)
   return false;
 }
 
-inline bool in__(char c, std::string& mystring)
-{
-  for (const char it : mystring)
-  {
-    if (it == c)
-      return true;
-  }
-  return false;
-}
-
-inline bool in__(char c, const char *mystring)
+inline bool in__(char c, const char* mystring)
 {
   std::string str = mystring;
   for (const char it : str)
@@ -207,39 +117,12 @@ inline bool in__(char c, const char *mystring)
   }
   return false;
 }
-
-inline bool in__(char c, char *mystring)
-{
-  std::string str = mystring;
-  for (const char it : str)
-  {
-    if (it == c)
-      return true;
-  }
-  return false;
-}
-
 
 /********************************
  Overloads for string (string)
 *********************************/
 
 inline bool in__(const std::string &substring, const std::string& mystring)
-{
-  return mystring.find(substring) != std::string::npos;
-}
-
-inline bool in__(std::string &substring, const std::string& mystring)
-{
-  return mystring.find(substring) != std::string::npos;
-}
-
-inline bool in__(const std::string &substring, std::string& mystring)
-{
-  return mystring.find(substring) != std::string::npos;
-}
-
-inline bool in__(std::string &substring, std::string& mystring)
 {
   return mystring.find(substring) != std::string::npos;
 }
@@ -253,37 +136,7 @@ inline bool in__(const std::string &substring, const char *mystring)
   return std::string(mystring).find(substring) != std::string::npos;
 }
 
-inline bool in__(std::string &substring, const char *mystring)
-{
-  return std::string(mystring).find(substring) != std::string::npos;
-}
-
-inline bool in__(const std::string &substring, char *mystring)
-{
-  return std::string(mystring).find(substring) != std::string::npos;
-}
-
-inline bool in__(std::string &substring, char *mystring)
-{
-  return std::string(mystring).find(substring) != std::string::npos;
-}
-
 inline bool in__(const char *substring, const std::string& mystring)
-{
-  return mystring.find(std::string(substring)) != std::string::npos;
-}
-
-inline bool in__(char *substring, const std::string& mystring)
-{
-  return mystring.find(std::string(substring)) != std::string::npos;
-}
-
-inline bool in__(const char *substring, std::string& mystring)
-{
-  return mystring.find(std::string(substring)) != std::string::npos;
-}
-
-inline bool in__(char *substring, std::string& mystring)
 {
   return mystring.find(std::string(substring)) != std::string::npos;
 }
@@ -297,59 +150,11 @@ inline bool in__(const char *substring, const char *mystring)
   return std::string(mystring).find(std::string(substring)) != std::string::npos;
 }
 
-inline bool in__(char *substring, const char *mystring)
-{
-  return std::string(mystring).find(std::string(substring)) != std::string::npos;
-}
-
-inline bool in__(const char *substring, char *mystring)
-{
-  return std::string(mystring).find(std::string(substring)) != std::string::npos;
-}
-
-inline bool in__(char *substring, char *mystring)
-{
-  return std::string(mystring).find(std::string(substring)) != std::string::npos;
-}
-
 /********************************
  Overloads for char * (vector)
 *********************************/
 
 inline bool in__(const char *s, const std::vector<std::string>& svec)
-{
-  std::string str(s);
-  for (const std::string& it : svec)
-  {
-    if (it == s)
-      return true;
-  }
-  return false;
-}
-
-inline bool in__(char *s, const std::vector<std::string>& svec)
-{
-  std::string str(s);
-  for (const std::string& it : svec)
-  {
-    if (it == s)
-      return true;
-  }
-  return false;
-}
-
-inline bool in__(const char *s, std::vector<std::string>& svec)
-{
-  std::string str(s);
-  for (const std::string& it : svec)
-  {
-    if (it == s)
-      return true;
-  }
-  return false;
-}
-
-inline bool in__(char *s, std::vector<std::string>& svec)
 {
   std::string str(s);
   for (const std::string& it : svec)
@@ -375,63 +180,12 @@ inline bool in__(const char *s, const std::set<std::string>& svec)
   return false;
 }
 
-inline bool in__(char *s, const std::set<std::string>& svec)
-{
-  std::string str(s);
-  for (const std::string& it : svec)
-  {
-    if (it == s)
-      return true;
-  }
-  return false;
-}
-
-inline bool in__(const char *s, std::set<std::string>& svec)
-{
-  std::string str(s);
-  for (const std::string& it : svec)
-  {
-    if (it == s)
-      return true;
-  }
-  return false;
-}
-
-inline bool in__(char *s, std::set<std::string>& svec)
-{
-  std::string str(s);
-  for (const std::string& it : svec)
-  {
-    if (it == s)
-      return true;
-  }
-  return false;
-}
-
 /********************************
  Overloads for char * (map)
 *********************************/
 
 template <class T>
 inline bool in__(const char *s, const std::map<std::string, T>& mymap)
-{
-  return mymap.find(std::string(s)) != mymap.end();
-}
-
-template <class T>
-inline bool in__(char *s, const std::map<std::string, T>& mymap)
-{
-  return mymap.find(std::string(s)) != mymap.end();
-}
-
-template <class T>
-inline bool in__(const char *s, std::map<std::string, T>& mymap)
-{
-  return mymap.find(std::string(s)) != mymap.end();
-}
-
-template <class T>
-inline bool in__(char *s, std::map<std::string, T>& mymap)
 {
   return mymap.find(std::string(s)) != mymap.end();
 }
@@ -446,39 +200,6 @@ inline bool in__(const char *s, const std::initializer_list<std::string>& list)
   for (const std::string& it : list)
   {
     if (it == s)
-      return true;
-  }
-  return false;
-}
-
-inline bool in__(char *s, const std::initializer_list<std::string>& list)
-{
-  std::string str(s);
-  for (const std::string& it : list)
-  {
-    if (it == s)
-      return true;
-  }
-  return false;
-}
-
-inline bool in__(const char *s, const std::initializer_list<const char *>& list)
-{
-  std::string str(s);
-  for (const std::string& it : list)
-  {
-    if (in__(s, it))
-      return true;
-  }
-  return false;
-}
-
-inline bool in__(char *s, const std::initializer_list<const char *>& list)
-{
-  std::string str(s);
-  for (const std::string& it : list)
-  {
-    if (in__(s, it))
       return true;
   }
   return false;
@@ -518,7 +239,39 @@ namespace pylike_in_helper_in {
   struct in_t : pylike_named_operator_in::make_operator<in_t> {};
   template<class T, class C>
   inline bool named_invoke( T&& t, in_t, C&& c ) {
-    return in__(t, c);
+    return in__(const_cast<const T&&>(t), const_cast<const C&&>(c));
+  }
+
+  // Cases involving char* must be treated specifically
+  template<class C>
+  inline bool named_invoke(char *t, in_t, C&& c) {
+    return in__(const_cast<const char*>(t), const_cast<const C&&>(c));
+  }
+  template<class T>
+  inline bool named_invoke(T&& t, in_t, char *c) {
+    return in__(const_cast<const T&&>(t), const_cast<const char*>(c));
+  }
+  inline bool named_invoke(char *t, in_t, char *c) {
+    return in__(const_cast<const char*>(t), const_cast<const char*>(c));
+  }
+  template<class C>
+  inline bool named_invoke(const char *t, in_t, C&& c) {
+    return in__(const_cast<const char*>(t), const_cast<const C&&>(c));
+  }
+  template<class T>
+  inline bool named_invoke(T&& t, in_t, const char *c) {
+    return in__(const_cast<const T&&>(t), const_cast<const char*>(c));
+  }
+  inline bool named_invoke(const char *t, in_t, const char *c) {
+    return in__(const_cast<const char*>(t), const_cast<const char*>(c));
+  }
+
+  inline bool named_invoke(char t, in_t, char* c) {
+    return in__(t, const_cast<const char*>(c));
+  }
+
+  inline bool named_invoke(char t, in_t, const char* c) {
+    return in__(t, const_cast<const char*>(c));
   }
 }
 
