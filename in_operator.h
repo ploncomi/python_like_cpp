@@ -208,7 +208,7 @@ inline bool contains__(const std::initializer_list<std::string>& list, const cha
 /***********************************************************
  Deleted functions (first argument bool could be an error)
 ************************************************************/
-template <class T> inline bool contains__(const T& v1, const T& v2) = delete;  // NOTE: "x in y" has not sense when both have the same type
+template <class T> inline bool contains__(const T& v1, const T& v2) = delete;  // NOTE: "x in y" has not sense when both have the same type, specialize contains( ) if needed
 inline bool contains__(const std::string&, bool) = delete;  // NOTE: use "x not_in y" instead of: "! x in y"
 inline bool contains__(const std::vector<bool>&, bool) = delete; // NOTE: "in" operator is not compatible with bool
 
