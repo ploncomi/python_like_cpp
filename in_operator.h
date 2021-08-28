@@ -21,9 +21,11 @@
 // #define in <in_operator::in>
 // #define not_in <in_operator::not_in>
 
+// For using operator in with custom classes, create a function contains__( )
+
 
 /*********
- Function L(), optional
+ Function L() for creating an initializer list, optional
 **********/
 namespace in_operator_L
 {
@@ -107,17 +109,6 @@ inline bool contains__(const std::string& mystring, char c)
   return false;
 }
 
-inline bool contains__(const char* mystring, char c)
-{
-  std::string str = mystring;
-  for (const char it : str)
-  {
-    if (it == c)
-      return true;
-  }
-  return false;
-}
-
 /********************************
  Overloads for string (string)
 *********************************/
@@ -127,76 +118,12 @@ inline bool contains__(const std::string& mystring, const std::string &substring
   return mystring.find(substring) != std::string::npos;
 }
 
-/********************************
- Overloads for string (char *)
-*********************************/
-
-inline bool contains__(const char *mystring, const std::string& substring)
-{
-  return std::string(mystring).find(substring) != std::string::npos;
-}
-
-inline bool contains__(const std::string& mystring, const char* substring)
-{
-  return mystring.find(std::string(substring)) != std::string::npos;
-}
-
-/********************************
- Overloads for char * (char *)
-*********************************/
-
-inline bool contains__(const char *mystring, const char* substring)
-{
-  return std::string(mystring).find(std::string(substring)) != std::string::npos;
-}
-
-/********************************
- Overloads for char * (vector)
-*********************************/
-
-inline bool contains__(const std::vector<std::string>& svec, const char* s)
-{
-  std::string str(s);
-  for (const std::string& it : svec)
-  {
-    if (it == s)
-      return true;
-  }
-  return false;
-}
-
-/********************************
- Overloads for char * (set)
-*********************************/
-
-inline bool contains__(const std::set<std::string>& svec, const char *s)
-{
-  std::string str(s);
-  for (const std::string& it : svec)
-  {
-    if (it == s)
-      return true;
-  }
-  return false;
-}
-
-/********************************
- Overloads for char * (map)
-*********************************/
-
-template <class T>
-inline bool contains__(const std::map<std::string, T>& mymap, const char* s)
-{
-  return mymap.find(std::string(s)) != mymap.end();
-}
-
 /*****************************************
- Overloads for char * (initializer_list)
+ Overloads for initializer_list (string)
 ******************************************/
 
-inline bool contains__(const std::initializer_list<std::string>& list, const char* s)
+inline bool contains__(const std::initializer_list<const char *>& list, const std::string &s)
 {
-  std::string str(s);
   for (const std::string& it : list)
   {
     if (it == s)
@@ -208,15 +135,12 @@ inline bool contains__(const std::initializer_list<std::string>& list, const cha
 /***********************************************************
  Deleted functions (first argument bool could be an error)
 ************************************************************/
-template <class T> inline bool contains__(const T& v1, const T& v2) = delete;  // NOTE: "x in y" has not sense when both have the same type, specialize contains( ) if needed
+template <class T> inline bool contains__(const T& v1, const T& v2) = delete;  // NOTE: "x in y" has not sense when both have the same type, specialize if needed
 inline bool contains__(const std::string&, bool) = delete;  // NOTE: use "x not_in y" instead of: "! x in y"
-inline bool contains__(const std::vector<bool>&, bool) = delete; // NOTE: "in" operator is not compatible with bool
 
-template <typename A, typename B> inline bool not_contains__(const A &v1, const B &v2) {return !contains__(v1,v2);}
-
-/************************************
- Definition of the operators
-*************************************/
+/***************************************
+ Definition of classes for operator in
+****************************************/
 namespace pylike_named_operator_in
 {
   template<class D>struct make_operator{make_operator(){}};
@@ -245,35 +169,48 @@ namespace pylike_in_helper_in {
   // Cases involving char* must be treated specifically
   template<class C>
   inline bool named_invoke(char *t, in_t, C&& c) {
-    return contains__(const_cast<const C&&>(c), const_cast<const char*>(t));
+    const std::string st = t;
+    return contains__(const_cast<const C&&>(c), st);
   }
   template<class T>
   inline bool named_invoke(T&& t, in_t, char *c) {
-    return contains__(const_cast<const char*>(c), const_cast<const T&&>(t));
+    const std::string sc = c;
+    return contains__(sc, const_cast<const T&&>(t));
   }
   inline bool named_invoke(char *t, in_t, char *c) {
-    return contains__(const_cast<const char*>(c), const_cast<const char*>(t));
+    const std::string st = t;
+    const std::string sc = c;
+    return contains__(sc, st);
   }
   template<class C>
   inline bool named_invoke(const char *t, in_t, C&& c) {
-    return contains__(const_cast<const C&&>(c), const_cast<const char*>(t));
+    const std::string st = t;
+    return contains__(const_cast<const C&&>(c), st);
   }
   template<class T>
   inline bool named_invoke(T&& t, in_t, const char *c) {
-    return contains__(const_cast<const char*>(c), const_cast<const T&&>(t));
+    const std::string sc = c;
+    return contains__(sc, const_cast<const T&&>(t));
   }
   inline bool named_invoke(const char *t, in_t, const char *c) {
-    return contains__(const_cast<const char*>(c), const_cast<const char*>(t));
+    const std::string st = t;
+    const std::string sc = c;
+    return contains__(sc, st);
   }
 
   inline bool named_invoke(char t, in_t, char* c) {
-    return contains__(const_cast<const char*>(c), t);
+    const std::string sc = c;
+    return contains__(sc, t);
   }
 
   inline bool named_invoke(char t, in_t, const char* c) {
-    return contains__(const_cast<const char*>(c), t);
+    const std::string sc = c;
+    return contains__(sc, t);
   }
 }
+/******************************************
+ Definition of classes for operator not_in
+*******************************************/
 
 namespace pylike_named_operator_not_in
 {
@@ -293,13 +230,19 @@ namespace pylike_named_operator_not_in
     return named_invoke( std::forward<Lhs>(lhs.lhs), Op{}, std::forward<Rhs>(rhs) );
   }
 }
+
 namespace pylike_in_helper_not_in {
   struct not_in_t : pylike_named_operator_not_in::make_operator<not_in_t> {};
   template<class T, class C>
   inline bool named_invoke( T&& t, not_in_t, C&& c ) {
-    return not_contains__(c, t);
+    pylike_in_helper_in::in_t in_op;
+    return !(t <in_op> c);
   }
 }
+
+/*************************
+ Operators in and not_in
+**************************/
 
 namespace in_operator
 {
