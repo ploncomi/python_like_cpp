@@ -56,8 +56,10 @@ Notes:
 #undef not_in
 ```
 
-4) Support of ```in``` operator for new classes requires only to define a function ```bool contains__(const Container& container, const Element& element)```
+4) Support of ```in``` operator for new classes requires only to define a function:
+
+&nbsp; &nbsp; &nbsp; &nbsp; ```bool contains__(const Container& container, const Element& element)```
 
 5) ```split()``` and ```strip()``` equivalent versions do exist in the Boost libraries, but use of Boost requires more verbose code. Also, ```split()``` in boost can only handle individual characters for splitting strings.
 
-6) There are possible bugs in ```split()```, it must be revised further
+6) There may be possible bugs in ```split()```, it must be revised further
