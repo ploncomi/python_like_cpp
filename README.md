@@ -56,7 +56,7 @@ Notes:
 #undef not_in
 ```
 
-4) Support of ```in``` operator for new classes requires only to define a function:
+4) Support of ```in``` and ```not_in``` operators for new classes requires only to define a function:
 
 &nbsp; &nbsp; &nbsp; &nbsp; ```bool contains__(const Container& container, const Element& element)```
 
