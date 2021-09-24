@@ -1,4 +1,5 @@
 // 2021 Patricio Loncomilla
+// License: MIT
 
 #ifndef SPLIT_STRIP_H_
 #define SPLIT_STRIP_H_
