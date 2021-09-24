@@ -1,4 +1,5 @@
 // 2021 Patricio Loncomilla
+// License: MIT
 
 #ifndef IN_OPERATOR_H_
 #define IN_OPERATOR_H_
