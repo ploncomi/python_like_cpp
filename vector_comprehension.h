@@ -1,4 +1,5 @@
 // 2021 Patricio Loncomilla
+// License: MIT
 
 #ifndef VECTOR_COMPREHENSION_H_
 #define VECTOR_COMPREHENSION_H_
