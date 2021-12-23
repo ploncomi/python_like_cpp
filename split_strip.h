@@ -34,7 +34,7 @@ inline std::string strip(const std::string& s, const std::string &delims = " \n"
   if (s == "")
     return "";
   std::stringstream ss;
-  int i1=0, i2=s.size()-1;
+  size_t i1=0, i2=s.size()-1;
   while ( i1 < i2 && in_fn_(s[i1], delims))
     i1++;
   if (i1 == i2)
@@ -73,7 +73,7 @@ inline std::vector<std::string> split(const std::string &str, const std::vector<
   //  return sarr;
   s = str;
 
-  int i = 0;
+  size_t i = 0;
   while (i < s.size())
   {
     bool inside_token = false;  // This variable indicates if inside a separator or inside a token
