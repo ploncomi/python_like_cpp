@@ -9,6 +9,8 @@
 #include <sstream>
 #include <initializer_list>
 
+#include <iostream>
+
 
 // Functions provided:
 // strip()
@@ -159,6 +161,27 @@ std::string replace(std::string subject, const std::string& search, const std::s
   }
     return subject;
 }  
+
+bool startswith(std::string str, std::string value)
+{
+  if (str.size() < value.size())
+    return false;
+  for (size_t i=0; i<value.size(); i++)
+    if (str[i] != value[i])
+      return false;
+  return true;
+}
+
+
+bool endswith(std::string str, std::string value)
+{
+  if (str.size() < value.size())
+    return false;
+  for (size_t i=0; i<value.size(); i++)
+    if (str[i+value.size()] != value[i])
+      return false;
+  return true;
+}
 
 
 } // namespace pl_split_strip

@@ -26,5 +26,11 @@ int main(void)
   cout << split("Hello all", {"l"}) << endl;  // Compress tokens
   cout << join("l", split("Hello all", "l")) << endl;
 
+  cout << replace("Some words", "Some", "No") << endl;
+
+  cout << startswith("Some words", "Some") << endl;
+  cout << endswith("Some words", "words") << endl;
+
+
   return 0;
 }
