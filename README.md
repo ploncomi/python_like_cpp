@@ -41,11 +41,7 @@ Use of vector slices is not implemented, but it is implemented (views) in https:
 
 Notes:
 
-1) This is a toy code...
-
-2) The main actual difficulty with these codes is that reported compilation errors when misusing operators ```in``` and ```not_in``` are not informative enough (specially when using g++).
-
-3) Use of ```in``` and ```not_in``` operators require using defines for being used:
+1) Use of ```in``` and ```not_in``` operators require using defines for being used:
 
 ```
 #define in <in_operator::in>
@@ -56,10 +52,8 @@ Notes:
 #undef not_in
 ```
 
-4) Support of ```in``` and ```not_in``` operators for new classes requires only to define a function:
+2) Support of ```in``` and ```not_in``` operators for new classes requires only to define a function:
 
 &nbsp; &nbsp; &nbsp; &nbsp; ```bool contains__(const Container& container, const Element& element)```
 
-5) ```split()``` and ```strip()``` equivalent versions do exist in the Boost libraries, but use of Boost requires more verbose code. Also, ```split()``` in boost can only handle individual characters for splitting strings.
-
-6) There may be possible bugs in ```split()```, it must be revised further
+3) ```split()``` and ```strip()``` equivalent versions do exist in the Boost libraries, but use of Boost requires more verbose code. Also, ```split()``` in boost can only handle individual characters for splitting strings.
