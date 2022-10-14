@@ -35,6 +35,8 @@ This project is maintained by Patricio Loncomilla. The code is under MIT license
 
 The codes in this repository require at least C++11 to compile
 
+Each of the .h files, which implement the functionalities, are self contained.
+
 Vector comprehensions are also compatible with range( ) from https://github.com/whoshuu/cpp_range
 
 Use of vector slices is not implemented, but it is implemented (views) in https://github.com/ericniebler/range-v3
