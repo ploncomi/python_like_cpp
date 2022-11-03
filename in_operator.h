@@ -137,7 +137,7 @@ inline bool contains__(const std::initializer_list<const char *>& list, const st
  Deleted functions (first argument bool could be an error)
 ************************************************************/
 template <class T> inline bool contains__(const T& v1, const T& v2) = delete;  // NOTE: "x in y" has not sense when both have the same type, specialize if needed
-inline bool contains__(const std::string&, bool) = delete;  // NOTE: use "x not_in y" instead of: "! x in y"
+//inline bool contains__(const std::string&, bool) = delete;  // NOTE: use "x not_in y" instead of: "! x in y"
 
 /***************************************
  Definition of classes for operator in
