@@ -39,7 +39,7 @@ Each of the .h files, which implement the functionalities, are self contained.
 
 Vector comprehensions are also compatible with range( ) from https://github.com/whoshuu/cpp_range
 
-Use of vector slices is not implemented, but it is implemented (views) in https://github.com/ericniebler/range-v3
+Use of vector slices is not implemented here, but it is (partially) implemented at https://github.com/ploncomi/expr_vector
 
 Notes:
 
