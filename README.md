@@ -20,9 +20,9 @@ The objective of this project is to enable C++ to use python-like constructs. Ex
 2) Vector comprehension (like list comprehensions)
 ```
   std::vector<int> vals = {6,7,8,9,10};
-  auto v1 = VECTCOMP(2*x, int x, vals);
-  auto v2 = VECTCOMP(2*x, int x, {1,2,3,4,5});
-  auto v3 = VECTCOMPIF(x, int x, vals, if (x%2 == 0));
+  std::vector<int> v1 = VECTCOMP(2*x, int x, vals);
+  std::vector<int> v2 = VECTCOMP(2*x, int x, {1,2,3,4,5});
+  std::vector<int> v3 = VECTCOMPIF(x, int x, vals, if (x%2 == 0));
 ```
 
 3) Simple split / strip of strings
